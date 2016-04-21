@@ -194,8 +194,8 @@
 						</td>
 						<td class="field">
 							<input class="text-input" id="radio" type="radio" name="completed-college" value="n">No
-							<input class="text-input" id="radio" type="radio" name="completed-college" value="a">Completed
-							<input class="text-input" id="radio" type="radio" name="completed-college" value="y">Attending<br>
+							<input class="text-input" id="radio" type="radio" name="completed-college" value="y">Completed
+							<input class="text-input" id="radio" type="radio" name="completed-college" value="a">Attending<br>
 						</td>
 					</tr>
 					<tr>
@@ -259,7 +259,7 @@
 					</tr>
 					<tr>
 						<td colspan="4" class="field">
-							<textarea class="form-control text-input" id="skills" placeholder="Enter any pertinent skills you may have here..."></textarea>
+							<textarea class="form-control text-input" name="skills" id="skills" placeholder="Enter any pertinent skills you may have here..."></textarea>
 						</td>
 					</tr>
 					<tr>
@@ -269,7 +269,7 @@
 					</tr>
 					<tr>
 						<td colspan="4" class="field">
-							<textarea class="form-control text-input" id="volunteer-work" placeholder="Enter any volunteer work you've completed here..."></textarea>
+							<textarea class="form-control text-input" name="volunteer-work" id="volunteer-work" placeholder="Enter any volunteer work you've completed here..."></textarea>
 						</td>
 					</tr>
 					<tr>
@@ -279,7 +279,7 @@
 					</tr>
 					<tr>
 						<td colspan="4" class="field">
-							<textarea class="form-control text-input" id="organizations" placeholder="List any organizations you may be a part of. Please separate organization names by commas (',')"></textarea>
+							<textarea class="form-control text-input" name="organizations" id="organizations" placeholder="List any organizations you may be a part of. Please separate organization names by commas (',')"></textarea>
 						</td>
 					</tr>
 				</table>
