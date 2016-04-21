@@ -1,14 +1,10 @@
 <?php
-        //If the user is not connected through HTTPS, redirect into it
-
         if (!isset($_SERVER['HTTPS']) || !$_SERVER['HTTPS']) { // if request is not secure, redirect to secure url
            $url = 'https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
            header('Location: ' . $url);
         }
 
         session_start();
-
-        
 
 
         if(strcmp($_SESSION['type'],'user') === 0){
@@ -17,9 +13,8 @@
          
         }else{
           header('Location: https://mizseng.centralus.cloudapp.azure.com/index.php');
-        }
+        } 
 
-        
 
 ?>
 
@@ -53,6 +48,7 @@
 
     <!-- Custom styles for this template -->
     <link href="jumbotron.css" rel="stylesheet">
+	<link href="messageTemp.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -67,18 +63,84 @@
   <body>
 
 	
+
 <?php include 'navbar.php' ?>
 
 
+		<!-- MESSAGING TEMPLATE -->
 <div class="jumbotron">
       <div class="container">
-        <div class="jumbotron-content">
-        <h2>This is your home page!</h2>
-        <br><br>
-        <p>Built from the ground up for the Professionals of the world. Use PSN to foster and grow <i><b>your</b></i> Professional Social Network. Join today.</p>
-        <br><br>
-        </div>
+      <div class="jumbotron-content">
+				<div>
+				<table>
+					<tr>
+						<td>
+							<img src="pic_mountain.jpg" alt="User Image" style="width:100;height:100;">
+							<h4> firstName lastName </h4>
+						</td>
+						<td>
+							<textarea placeholder="Message Content"></textarea>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<textarea id="message" name="message" placeholder="Message Content"></textarea>
+						</td>
+						<td>
+							<img src="pic_mountain.jpg" alt="User Image" style="width:100;height:100;">
+							<h4> firstName lastName <h4>
+						</td>						
+				</table>				
+				</div>
+			<form>
+				<div id="message-form">
+					<label for="message">Message: <span class="required">*</span></label>
+					<textarea id="message" name="message" placeholder="Type your message here.." required="required" data-minlength="20"></textarea>
+				 
+					<br><br>
+					<span id="loading"></span>
+					<input type="submit" value="Send!" id="submit-button" />
+				</div>
+			</form>	
       </div>
+		</div>
+</div>
+		
+		<!--
+		<form>
+			<table border = "1">
+			<tr>
+					<td>
+						<img src="pic_mountain.jpg" alt="User Image" style="width:160;height:150;">
+						<h4> firstName lastName <h4>
+					</td>
+					<td width="100%"> 
+						<input type="text"; width= "100%">
+						Message Content 
+					</td>
+			</tr>
+				<br><br>
+				<tr>
+					<td width="100%"> 
+						<input type="text"; width= "100%">
+						Message Content 
+					</td>
+					<td>
+						<img src="pic_mountain.jpg" alt="User Image" style="width:160;height:150;">
+						<h4> firstName lastName <h4>
+					</td>
+				</tr>
+				
+			</table>
+			
+			<br><br>
+				<div align="right">
+				<input type="submit" value="SEND" style="width:100px; height:100px>
+				</div>
+		</form> -->
+		
+
+   
     </div>
 
 
