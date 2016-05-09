@@ -61,13 +61,11 @@
             echo '<h2> <u>There was an error in processing your registration: </u> </h2><br>';
 
         }else{
-            $_SESSION['type'] = 'business';
-            $_SESSION['bid'] = $bus_id; 
-            header('Location: https://mizseng.centralus.cloudapp.azure.com/home.php');
+            header('Location: ../index.php');
         }
 
 		
         }else{
-            header('Location: https://mizseng.centralus.cloudapp.azure.com/index.php');
+            header('Location: ../index.php');
         }
 ?>

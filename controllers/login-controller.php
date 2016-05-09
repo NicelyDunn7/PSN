@@ -10,7 +10,7 @@
 <?php
        if(empty($_POST['Email']) == true || empty($_POST['Password']) == true){
             $_SESSION['invalid-credentials'] = 1;
-            header('Location: https://mizseng.centralus.cloudapp.azure.com/index.php');
+            header('Location: ../index.php');
         }else if(isset($_POST['submit'])) { // Was the form submitted?
         
         //Connect to the MySQL Account on Azure Server             
@@ -31,7 +31,7 @@
                 	                $_SESSION['type'] = "business";
                 	                $_SESSION['bus_id'] = $bus_id;
                                     $_SESSION['invalid-credentials'] = 0;
-                	                header('Location: https://mizseng.centralus.cloudapp.azure.com/home.php');
+                	                header('Location: ../home.php');
                 	        } else {
                 	                echo "<h4>Authentication Failure</h4>";
                                     $_SESSION['invalid-credentials'] = 1;
@@ -54,7 +54,7 @@
                                         $_SESSION['type'] = "user";
                                         $_SESSION['user_id'] = $user_id;
                                         $_SESSION['invalid-credentials'] = 0;
-                                        header('Location: https://mizseng.centralus.cloudapp.azure.com/home.php');
+                                        header('Location: ../home.php');
                                 } else {
                                         echo "<h4>Authentication Failure</h4>";
                                         $_SESSION['invalid-credentials'] = 1;
@@ -65,10 +65,10 @@
                         }
 		}
 	}else{
-        header('Location: https://mizseng.centralus.cloudapp.azure.com/index.php');
+        header('Location: ../index.php');
     }
 
     if($_SESSION['invalid-credentials'] == 1)
-        header('Location: https://mizseng.centralus.cloudapp.azure.com/index.php');
+        header('Location: ../index.php');
 
 ?>

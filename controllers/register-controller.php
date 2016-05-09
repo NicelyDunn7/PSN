@@ -49,8 +49,8 @@
 
 
 		//Connect to the MySQL Account on Azure Server
-	        	
-	        	$link->autocommit(FALSE);
+	    $link->autocommit(FALSE);
+		
 		//Take user input for username and password, salt and hash the password,
                 //and store the new account in the database
                 $sql = "INSERT INTO UserCredentials (UserCredential_Email, UserCredential_Passward, UserCredential_Id) VALUES (?, ?, ?)";
@@ -104,9 +104,9 @@
 	
         }else{
         	if($_POST['visited-reg-form'] == 1){
-        		header('Location: https://mizseng.centralus.cloudapp.azure.com/user-registration-error.php');
+        		header('Location: ../user-registration-error.php');
         	}else{
-        		header('Location: https://mizseng.centralus.cloudapp.azure.com/index.php');
+        		header('Location: ../index.php');
         	}
         	
         	

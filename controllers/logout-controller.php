@@ -9,6 +9,6 @@
         session_start();
         session_unset();
         session_destroy();
-        header('Location: http://mizseng.centralus.cloudapp.azure.com/index.php');
+        header('Location: ../index.php');
 ?>
 
