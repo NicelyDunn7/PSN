@@ -8,7 +8,8 @@
         //If already logged in, redirect to the home page
         session_start();
         if(strcmp($_SESSION['type'],'business') == 1 || strcmp($_SESSION['type'],'user') == 1){
-                header('Location: https://mizseng.centralus.cloudapp.azure.com/home.php');
+                //header('Location: https://mizseng.centralus.cloudapp.azure.com/home.php');
+				header('Location: home.php');
         }
 
 	
@@ -88,7 +89,7 @@
         </td>
         <td id = "login-field" width = "50%">
           <div id = "navbar" class="navbar-collapse collapse">
-            <form class="navbar-form navbar-right" method="POST" action='https://mizseng.centralus.cloudapp.azure.com/controllers/login-controller.php'>
+            <form class="navbar-form navbar-right" method="POST" action='controllers/login-controller.php'>
               <div class="form-group">
                 <?php
                   if($_SESSION['invalid-credentials'] == 1){

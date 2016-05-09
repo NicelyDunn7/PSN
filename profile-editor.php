@@ -8,7 +8,7 @@
         //If the user is not logged in, redirect to the login page
         session_start();
         if(strcmp($_SESSION['type'],'user') !== 0 && strcmp($_SESSION['type'],'business') !== 0){
-                header('Location: https://mizseng.centralus.cloudapp.azure.com/index.php');
+                header('Location: index.php');
         }
 
         //Connect to the database through the automated script
@@ -70,10 +70,17 @@ function printRadio($key){
 }
 
 //display editable text area for input $key
+/*function printTextarea($key){
+        echo "<div class='form-group'>";
+        echo "<label class='inputdefault'>".$key."</label>";
+		echo "<input class='form-control text-input' type='textarea' name='".$key."' value='".$_POST[$key]."'>";
+        echo "</div>";
+}*/
+
 function printTextarea($key){
         echo "<div class='form-group'>";
         echo "<label class='inputdefault'>".$key."</label>";
-	echo "<input class='form-control text-input' type='textarea' name='".$key."' value='".$_POST[$key]."'>";
+		echo "<textarea class='form-control text-input' type='textarea' name='".$key."'>".$_POST[$key]."</textarea>";
         echo "</div>";
 }
 
@@ -105,8 +112,9 @@ function displayUser() {
 	printTextarea('Volunteer_Work');
 	printTextarea('Organizations');
 	echo "<input class='btn btn-info btn-lg' type='submit' name='save' style='margin-left:100px;' value='Save'>";
-	echo "<a class='btn btn-danger btn-lg' href='profile.php' style='float:right;margin-right:80px;'>Return to Profile</a>";
-	echo "</form>";
+	echo "<a class='btn btn-success btn-lg' href='profile.php' style='float:right;margin-right:80px;'>Return to Profile</a>";
+	echo "</form>";		
+	
 	echo "</div>";
 }
 
@@ -123,7 +131,7 @@ function displayBusinesses() {
 	printNumeric('Telephone');
 	printInput('Website');
 	echo "<input class='btn btn-info btn-lg' type='submit' name='save' style='margin-left:100px;' value='Save'>";
-	echo "<a class='btn btn-danger btn-lg' href='profile.php' style='float:right;margin-right:80px;'>Return to Profile</a>";
+	echo "<a class='btn btn-success btn-lg' href='profile.php' style='float:right;margin-right:80px;'>Return to Profile</a>";
 	echo "</form>";
 	echo "</div>";
 }
@@ -168,7 +176,16 @@ function saveBusinesses() {
                 echo "<h2>Prepare Failed</h2>";
         }
 }
+
 ?>
+<script>
+//function for deleting User
+function deleteUser(id) {
+	var e = document.getElementById(id);
+		e.style.display = 'block';
+}
+</script>
+
 <html>
 	<head>
 		<!-- Latest compiled and minified CSS -->
@@ -246,10 +263,36 @@ if(isset($_POST['edit'])) {//submit came from index.php to update
                                 break;
 		}
 	}
-} else {
+} else if(isset($_POST['delete'])) {
+		if(isset($_POST['table'])) {//do we have table information?
+			switch($_POST['table']) {//what table are we deleting
+				case "User":
+					deleteUser();
+					break;
+				case "Businesses":
+					deleteBusiness();
+					break;
+				default:
+					echo "<h2>Failed to delete profile</h2>";
+					break;
+			}
+		}
+	} else {
 	echo "<h2>Nothing Received</h2>";
-}
+	}	
 ?>
+		<!-- POPUP BOX TO DELETE USER -->
+		<div id='deleteButton' class='jumbotron'>
+		<a href="javascript:void(0)" class='btn btn-danger btn-lg' name='delete' value='Delete' onclick="deleteUser('popupbox');" style='float:center;margin-center:80px;'>Delete Profile</a>
+		</div>	
+		<div id = "popupbox" style="display:none;" class="popupClass">
+			<h2><p style ="text-align:center" >"Are you sure you want to delete your profile?"</p></h2>
+			<div id ="popupbox">
+			<button class="deleteBtn"><a href= "deleteProfile.php" name ='delete' value='Delete' >Yes</a></button>
+			<button class="deleteBtn"><a href= "profile.php" name ='doNotDelete' value='NotDelete' >No</a></button>
+			<div>
+		</div>
+		
 </div>
 </body>
 </html>

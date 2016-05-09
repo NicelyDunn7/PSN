@@ -47,7 +47,7 @@
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <![endif]-->	
   </head>
   <body>
 
@@ -57,7 +57,7 @@
 <table id = "table-view" width = "100%"><tr>
       <div class="container">
       	<td id = "title-field" width = "50%">
-      	<a id = "title" class="navbar-brand" href="https://mizseng.centralus.cloudapp.azure.com/index.php">PSN: The Professional's Social Network</a>
+      	<a id = "title" class="navbar-brand" href="index.php">PSN: The Professional's Social Network</a>
       	</td>
       </div>
 		<td width = "30%">	</td>
@@ -73,7 +73,7 @@
 
 	<div class="jumbotron">
       <div class="container">
-        <form action="http://mizseng.centralus.cloudapp.azure.com/controllers/register-controller.php" method="POST">
+        <form action="controllers/register-controller.php" method="POST">
 				<table id = "form-view" width = "100%">
 					<tr width="100%">
 						<td class="table-header" colspan="4" align="center">
@@ -83,11 +83,11 @@
 					<tr>
 						<td class="table-label" width="8%">First Name:</td>
 						<td width="30%"class="field"> 
-							<input class="form-control text-input" type="text" name = "fname" placeholder = "First Name" required="yes"> 
+							<input class="form-control text-input" type="text" name = "fname" placeholder = "First Name" required="yes" maxlength="40"> 
 						</td>
 						<td class="table-label"width="8%">Last Name:</td>
 						<td width="30%" class="field" > 
-							<input class="form-control text-input" type="text" name = "lname" placeholder = "Last Name" required="yes">
+							<input class="form-control text-input" type="text" name = "lname" placeholder = "Last Name" required="yes" maxlength="40">
 						</td>
 					</tr>
 					<tr>
@@ -97,7 +97,7 @@
 								if($_SESSION['invalid-email'] == 1){
 									echo '<input class="form-control invalid text-input" type="email" name = "email" value="Invalid E-mail" placeholder = "Invalid E-mail"> ';
 								}else{
-									echo '<input class="form-control text-input" type="email" name = "email" placeholder = "E-mail"> ';
+									echo '<input class="form-control text-input" type="email" name = "email" placeholder = "E-mail" required="yes" maxlength="40"> ';
 								}
 							?> 
 						</td>
@@ -107,7 +107,7 @@
 								if($_SESSION['invalid-email']==1){
 									echo '<input class="form-control invalid text-input" type="email" name="email-confirm" value="Invalid-Email" placeholder="Confirm E-mail"';
 								}else{
-									echo '<input class="form-control text-input" type="email" name = "email-confirm" placeholder = "E-mail">';
+									echo '<input class="form-control text-input" type="email" name = "email-confirm" placeholder = "E-mail" required="yes">';
 								}
 							?>
 						</td>
@@ -119,7 +119,7 @@
 								if($_SESSION['invalid-pw'] == 1){
 									echo '<input class="form-control invalid text-input" value="Invalid Password" type="password" name = "password" placeholder = "Password"> ';
 								}else{
-									echo '<input class="form-control text-input" type="password" name = "password" placeholder = "Password"> ';
+									echo '<input class="form-control text-input" type="password" name = "password" placeholder = "Password" required="yes" maxlength="20"> ';
 								}
 							?>
 						</td>
@@ -129,7 +129,7 @@
 								if($_SESSION['invalid-pw'] == 1){
 									echo '<input class="form-control invalid text-input" value="Invalid Password" type="password" name = "password-confirm" placeholder = "Password"> ';
 								}else{
-									echo '<input class="form-control text-input" type="password" name = "password-confirm" placeholder = "Password"> ';
+									echo '<input class="form-control text-input" type="password" name = "password-confirm" placeholder = "Password" required="yes" maxlength="20"> ';
 								}
 							?>
 						</td>
@@ -137,31 +137,31 @@
 					<tr>
 						<td class="table-label" width="8%">Country:</td>
 						<td width="30%"class="field"> 
-							<input class="form-control text-input" type="text" name = "country" placeholder = "Country" required="yes"> 
+							<input class="form-control text-input" type="text" name = "country" placeholder = "Country" required="yes" required="yes" maxlength="15"> 
 						</td>
 						<td class="table-label"width="8%">State/Providence:</td>
 						<td width="30%" class="field" > 
-							<input class="form-control text-input" type="text" name = "state/providence" placeholder = "State/Providence" required="yes">
+							<input class="form-control text-input" type="text" name = "state/providence" placeholder = "State/Providence" required="yes" maxlength="10">
 						</td>
 					</tr>
 					<tr>
 						<td class="table-label" width="8%">City:</td>
 						<td width="30%"class="field"> 
-							<input class="form-control text-input" type="text" name = "city" placeholder = "City" required="yes"> 
+							<input class="form-control text-input" type="text" name = "city" placeholder = "City" required="yes" maxlength="10"> 
 						</td>
 						<td class="table-label"width="8%">Zip Code:</td>
 						<td width="30%" class="field" > 
-							<input class="form-control text-input" type="number" name = "zipcode" placeholder = "Zip-Code" required="yes">
+							<input class="form-control text-input" type="number" name = "zipcode" placeholder = "Zip-Code" required="yes" maxlength="5">
 						</td>
 					</tr>
 					<tr>
 						<td class="table-label" width="8%">Age:</td>
 						<td width="30%"class="field"> 
-							<input class="form-control text-input" type="number" name = "age" placeholder="Enter Age" min="18" required="yes">
+							<input class="form-control text-input" type="number" name = "age" placeholder="Enter Age" min="18" required="yes" maxlength="2">
 						</td>
 						<td class="table-label" width="8%">Gender:</td>
 						<td width="30%"class="field"> 
-							<input class="form-control text-input" type="text" name = "gender" placeholder="Gender" required="yes"> 
+							<input class="form-control text-input" type="text" name = "gender" placeholder="Gender" required="yes" maxlength="6"> 
 						</td>
 					</tr>
 					<tr>
@@ -169,13 +169,13 @@
 							User ID:
 						</td>
 						<td width="30%" class="field">
-							<input class="form-control text-input" type="text" id="userid" name="userid" placeholder="Enter desired User ID" required="yes">
+							<input class="form-control text-input" type="text" id="userid" name="userid" placeholder="Enter desired User ID" required="yes" maxlength="10">
 						</td>
 						<td width="8%" class="table-label">
 							Confirm:
 						</td>
 						<td width="30%" class="field">
-							<input class="form-control text-input" type="text" id="userid-confirm" name="userid-confirm" placeholder="Confirm your User ID" required="yes">
+							<input class="form-control text-input" type="text" id="userid-confirm" name="userid-confirm" placeholder="Confirm your User ID" required="yes" maxlength="10">
 						</td>
 					</tr>
 					<tr>
@@ -201,13 +201,13 @@
 					<tr>
 						<td class="table-label"width="8%">School:</td>
 						<td>
-							<input class="form-control text-input" type="text" name="highschool" placeholder="School Name" required="yes">
+							<input class="form-control text-input" type="text" name="highschool" placeholder="School Name" required="yes" maxlength="100">
 						</td>
 						<td class="table-label">
 							Degree(s):
 						</td>
 						<td class="special-field">
-							<input class="form-control text-input" type="text" name="degrees" placeholder="Degree(s)" required="yes">
+							<input class="form-control text-input" type="text" name="degrees" placeholder="Degree(s)" required="yes" maxlength="100">
 						</td>
 					</tr>
 					<tr>
@@ -229,13 +229,13 @@
 							Company:
 						</td>
 						<td class="special-field">
-							<input class="form-control text-input" type="text" name="company" placeholder="Company Name" required="yes">
+							<input class="form-control text-input" type="text" name="company" placeholder="Company Name" required="yes" maxlength="50">
 						</td>
 						<td class="table-label" width="8%">
 							Field/Industry:
 						</td>
 						<td width="30%"class="field"> 
-							<input class="form-control text-input" type="text" name = "field/industry" placeholder = "Field/Industry of Work" required="yes"> 
+							<input class="form-control text-input" type="text" name = "field/industry" placeholder = "Field/Industry of Work" required="yes" maxlength="50"> 
 						</td>
 					</tr>
 					<tr>
@@ -243,13 +243,13 @@
 							Job Title:
 						</td>
 						<td width="30%" class="special-field" > 
-							<input class="form-control text-input" type="text" name = "job-title" placeholder = "Job Title" required="yes">
+							<input class="form-control text-input" type="text" name = "job-title" placeholder = "Job Title" required="yes" maxlength="50">
 						</td>
 						<td class="table-label" width="8%">
 							Start-Date:
 						</td>
 						<td class="field">
-							<input class="form-control text-input" type="date" name="job-start">
+							<input class="form-control text-input" type="date" name="job-start" required="yes">
 						</td>
 					</tr>
 					<tr>

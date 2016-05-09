@@ -10,7 +10,14 @@
 
 	$_SESSION['invalid-pw']=0;
 		//if session var is set to 1 then pw's are invalid
-				
+		
+	if(strcmp($_SESSION['type'],'user') === 0){
+
+	} else if(strcmp($_SESSION['type'], 'business') === 0){
+	 
+	}else{
+	  header('Location: index.php');
+	}			
 ?>
 
 <!-- Latest compiled and minified CSS -->
@@ -63,12 +70,35 @@
 			#tablediv table {
 				color: lightgrey;
 			}
+			#connbutton {
+				width: 275px;
+				margin-bottom: 50px;
+			}
 			#editbutton {
 				width: 275px;
 				margin-bottom: 50px;
 			}
 			#visbutton {
 				width: 275px;
+			}
+			th {
+				width: 250px;
+			}
+			#text-section {
+				color: lightgrey;
+				text-align: center;
+			}
+			#text-section hr{
+				color: lightgrey;
+			}
+			#text-section p{
+				font-size: 100%;
+			}
+			#text-section h3:hover{
+				color:white;
+			}
+			hr {
+				border-color: black;
 			}
 		</style>
 	  </head>
@@ -78,7 +108,7 @@
 		<?php include 'navbar.php' ?>
 
 		<?php
-			global $fname, $lname, $occupation, $location, $email, $phone, $post, $searchString, $search;
+			global $fname, $lname, $occupation, $location, $email, $phone, $post, $searchString, $search,$outputName;
 		
 			//Connect to the MySQL Account on Azure Server
 			include 'controllers/dbcreds.php';
@@ -86,6 +116,16 @@
 			if( isset($_POST['type']) ){
 				$type = strtolower($_POST['type']);
 				$id = $_POST['id'];
+				if(strcmp($_SESSION['user_id'], $_POST['id']) < 0){
+					$sql = "SELECT * FROM Connections WHERE User_Id1='".$_SESSION['user_id']."' AND User_Id2='".$_POST['id']."' LIMIT 1";
+				} else {
+					$sql = "SELECT * FROM Connections WHERE User_Id1='".$_POST['id']."' AND User_Id2='".$_SESSION['user_id']."' LIMIT 1";
+				}
+				$result = $link->query($sql);
+				if($result->num_rows > 0)
+					$connected = true;
+				else
+					$connected = false;
 			} else {
 				$type = $_SESSION['type'];
 				if($type == 'user'){
@@ -95,12 +135,8 @@
 				}
 			}
 			
-			//if($_SESSION['type']=='user'){
 			if($type == 'user'){
 				/********* OUTPUT USER'S INFO ON THEIR PROFILE PAGE ****************/
-				//get users info
-				//$sql = "SELECT * FROM User WHERE User_Id = '{$_SESSION['user_id']}'";
-				//$sql2 = "SELECT * FROM UserCredentials WHERE UserCredential_Id = '{$_SESSION['user_id']}'";
 				
 				$sql = "SELECT * FROM User WHERE User_Id = '".$id."'";
 				$sql2 = "SELECT * FROM UserCredentials WHERE UserCredential_Id = '".$id."'";
@@ -145,6 +181,7 @@
 						<div style='float:left'>
 							<div class='profile-photo'>  <?php //the css this div is styled with pulls the image file ?> </div>
 							";
+							//If you are looking at your own profile, print edit profile and visualizer button
 							if(($type == $_SESSION['type']) && ($id == $_SESSION['user_id'] || $id == $_SESSION['bus_id'])){
 							echo "
 							<div>
@@ -174,6 +211,31 @@
 								<a href='visualizer.php' class='btn btn-success btn-lg' id='visbutton'>Employment-Rate Visualizer</a>
 							</div>
 							";}
+							else { //If looking at someone else's profile
+								if($_SESSION['type'] == 'user'){ //Must be a user for connecting
+									if($connected == false){
+										echo "
+										<div>
+											<form action='connect.php' method='POST'>
+											<input type='submit' class='btn btn-primary btn-lg' id='connbutton' name='connect' value='Connect With $fname'>
+											<input type='hidden' name='connect' value='connect'>
+											<input type='hidden' name='User_Id1' value='".$_SESSION['user_id']."'>
+											<input type='hidden' name='User_Id2' value='".$_POST['id']."'>
+										</div>
+										";
+									} else if ($connected == true) {
+										echo "
+										<div>
+											<form action='disconnect.php' method='POST'>
+											<input type='submit' class='btn btn-danger btn-lg' id='connbutton' name='disconnect' value='Disconnect From $fname'>
+											<input type='hidden' name='connect' value='connect'>
+											<input type='hidden' name='User_Id1' value='".$_SESSION['user_id']."'>
+											<input type='hidden' name='User_Id2' value='".$_POST['id']."'>
+										</div>
+										";
+									}
+								}
+							}
 							echo "
 						</div>
 						<div id='tablediv'>
@@ -227,6 +289,17 @@
 								</tbody>
 							</table>
 						</div>
+						<br>
+						<div id='text-section'>
+							<h3><u>Skills</u></h3>
+							<p>".$skills."</p>
+							<hr>
+							<h3><u>Organizations</u></h3>
+							<p>".$organizations."</p>
+							<hr>
+							<h3><u>Volunteer Work</u></h3>
+							<p>".$volunteer_work."</p>
+						</div>
 					</div>
 				</div>
 				";
@@ -237,12 +310,6 @@
 			/********* OUTPUT BUSINESS'S INFO ON THEIR PROFILE PAGE ****************/
 			//if($_SESSION['type']=='business'){
 			if($type == 'business'){
-				/*$busSql = "SELECT * FROM Businesses WHERE Bus_Id = '{$_SESSION['bus_id']}'";
-				$busSql2 = "SELECT * FROM BusinessCredentials WHERE BusinessCredential_Id = '{$_SESSION['bus_id']}'";
-				
-				$busResult =  $link->query($busSql);
-				$busResult2 = $link->query($busSql2);*/
-				
 				$sql = "SELECT * FROM Businesses WHERE Bus_Id = '".$id."'";
 				$sql2 = "SELECT * FROM BusinessCredentials WHERE BusinessCredential_Id = '".$id."'";
 				
@@ -255,7 +322,6 @@
 					$fname = $row['Bus_Name'];
 					$lname = $row['Industry'];
 					$age = $row['Website'];
-					//$occupation = $row['Website'];
 					$location = $row['Location'];
 					$phone = $row['Tele'];				
 

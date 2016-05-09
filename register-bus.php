@@ -57,7 +57,7 @@
 <table id = "table-view" width = "100%"><tr>
       <div class="container">
       	<td id = "title-field" width = "50%">
-      	<a id = "title" class="navbar-brand" href="https://mizseng.centralus.cloudapp.azure.com/index.php">PSN: The Professional's Social Network</a>
+      	<a id = "title" class="navbar-brand" href="index.php">PSN: The Professional's Social Network</a>
       	</td>
       </div>
 		<td width = "30%">	</td>
@@ -73,7 +73,7 @@
 
 	<div class="jumbotron">
       <div class="container">
-        <form action="https://mizseng.centralus.cloudapp.azure.com/controllers/register-bus-controller.php" method="POST">
+        <form action="controllers/register-bus-controller.php" method="POST">
 				<table id = "form-view" width = "100%">
 					<tr width="100%">
 						<td class="table-header" colspan="4" align="center">
@@ -83,11 +83,11 @@
 					<tr>
 						<td class="table-label" width="8%">Business Name:</td>
 						<td width="30%"class="field"> 
-							<input class="form-control text-input" type="text" name = "bname" placeholder = "Business Name" required="yes"> 
+							<input class="form-control text-input" type="text" name = "bname" placeholder = "Business Name" required="yes" maxlength="30"> 
 						</td>
 						<td class="table-label"width="8%">Field/Industry:</td>
 						<td width="30%" class="field" > 
-							<input class="form-control text-input" type="text" name = "field/industry" placeholder = "Field/Industry" required="yes">
+							<input class="form-control text-input" type="text" name = "field/industry" placeholder = "Field/Industry" required="yes" maxlength="30">
 						</td>
 					</tr>
 					<tr>
@@ -95,64 +95,64 @@
 							User ID:
 						</td>
 						<td width="30%" class="field">
-							<input class="form-control text-input" type="text" id="userid" name="userid" placeholder="Enter desired User ID" required="yes">
+							<input class="form-control text-input" type="text" id="userid" name="userid" placeholder="Enter desired User ID" required="yes" maxlength="10">
 						</td>
 						<td width="8%" class="table-label">
 							Confirm:
 						</td>
 						<td width="30%" class="field">
-							<input class="form-control text-input" type="text" id="userid-confirm" name="userid-confirm" placeholder="Confirm your User ID" required="yes">
+							<input class="form-control text-input" type="text" id="userid-confirm" name="userid-confirm" placeholder="Confirm your User ID" required="yes" maxlength="10">
 						</td>
 					</tr>
 					<tr>
 						<td class="table-label" width="8%">E-mail:</td>
 						<td width="30%"class="field"> 
-							<input class="form-control text-input" type="email" name = "email" placeholder = "E-mail"> 
+							<input class="form-control text-input" type="email" name = "email" placeholder = "E-mail" required="yes" maxlength="40"> 
 						</td>
 						<td class="table-label"width="8%">Confirm:</td>
 						<td width="30%" class="field" > 
-							<input class="form-control text-input" type="email" name = "email-confirm" placeholder = "E-mail" required="yes">
+							<input class="form-control text-input" type="email" name = "email-confirm" placeholder = "E-mail" required="yes" maxlength="40">
 						</td>
 					</tr>
 					<tr>
 						<td class="table-label" width="8%">Password:</td>
 						<td width="30%"class="field"> 
-							<input class="form-control text-input" type="password" name = "password" placeholder = "Password" required="yes"> 
+							<input class="form-control text-input" type="password" name = "password" placeholder = "Password" required="yes" maxlength="20"> 
 						</td>
 						<td class="table-label"width="8%">Confirm:</td>
 						<td width="30%" class="field" > 
-							<input class="form-control text-input" type="password" name = "password-confirm" placeholder = "Password" required="yes">
+							<input class="form-control text-input" type="password" name = "password-confirm" placeholder = "Password" required="yes" maxlength="20">
 						</td>
 					</tr>
 					<tr>
 						<td class="table-label" width="8%">Phone:</td>
 						<td width="30%"class="field"> 
-							<input class="form-control text-input" type="number" name = "phone" placeholder = "Phone" required="yes"> 
+							<input class="form-control text-input" type="number" name = "phone" placeholder = "Phone" required="yes" maxlength="13"> 
 						</td>
 						<td class="table-label"width="8%">Website:</td>
 						<td width="30%" class="field" > 
-							<input class="form-control text-input" type="text" name = "website" placeholder = "Website" required="yes">
+							<input class="form-control text-input" type="text" name = "website" placeholder = "Website" required="yes" maxlength="40">
 						</td>
 					</tr>
 
 					<tr>
 						<td class="table-label" width="8%">Country:</td>
 						<td width="30%"class="field"> 
-							<input class="form-control text-input" type="text" name = "country" placeholder = "Country" required="yes"> 
+							<input class="form-control text-input" type="text" name = "country" placeholder = "Country" required="yes" maxlength="15"> 
 						</td>
 						<td class="table-label"width="8%">State/Prov:</td>
 						<td width="30%" class="field" > 
-							<input class="form-control text-input" type="text" name = "state/prov" placeholder = "State/Providence" required="yes">
+							<input class="form-control text-input" type="text" name = "state/prov" placeholder = "State/Providence" required="yes" maxlength="10">
 						</td>
 					</tr>
 					<tr>
 						<td class="table-label" width="8%">City:</td>
 						<td width="30%"class="field"> 
-							<input class="form-control text-input" type="text" name = "city" placeholder = "City" required="yes"> 
+							<input class="form-control text-input" type="text" name = "city" placeholder = "City" required="yes" maxlength="10"> 
 						</td>
 						<td class="table-label"width="8%">Zip-Code:</td>
 						<td width="30%" class="field" > 
-							<input class="form-control text-input" type="number" name = "zip-code" placeholder = "Zip-Code" required="yes">
+							<input class="form-control text-input" type="number" name = "zip-code" placeholder = "Zip-Code" required="yes" maxlength="5">
 						</td>
 					</tr>
 					<tr>
@@ -160,7 +160,7 @@
 							Description:
 						</td>
 						<td class="field" colspan="3">
-							<textarea id = "description" class="form-control text-input" rows="5" name = 'description' required="yes">
+							<textarea id = "description" class="form-control text-input" rows="5" name = 'description' required>
 
 							</textarea>
 						</td>

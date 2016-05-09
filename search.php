@@ -8,7 +8,7 @@
         //If the user is not logged in, redirect to the login page
         session_start();
         if(strcmp($_SESSION['type'],'user') !== 0 && strcmp($_SESSION['type'],'business') !== 0){
-                header('Location: https://mizseng.centralus.cloudapp.azure.com/index.php');
+                header('Location: index.php');
         }  
 ?>
 
@@ -90,32 +90,27 @@
 			include 'controllers/dbcreds.php';
 				
 			if(isset($_POST['searchS'])) {
-				/*
-				$searchString = $_POST['searchS'];
-				echo $searchString;
-				if(!$searchString){
-					echo "search string failed";
-				}
-				//query for db table				
-				$sql = "SELECT User_Id FROM User WHERE Fname = '$searchString'";
-				$busSql ="SELECT Bus_Id FROM User WHERE Fname = '$searchString'";
-				$result =  $link->query($sql);
-								
-				if(!$result){
-					echo "result failed";
-				}				
-				
-				if($result->num_rows > 0) {
-					$row = $result->fetch_assoc();
-					$search = $row['User_Id'];
-				}
-				*/
 				
 				//Begin Danny's Code
 				$searchString = htmlspecialchars($_POST['searchS']);
 				$sql = "(SELECT User_Id, 'User' as type FROM User WHERE Fname LIKE '%".$searchString."%' OR
 						Lname LIKE '%".$searchString."%') UNION (SELECT Bus_Id, 'Business' as type FROM 
 						Businesses WHERE Bus_Name LIKE '%".$searchString."%')";
+						
+					/* Prepared statement, stage 1: prepare */
+				//	if (!($stmt = $mysqli->prepare("INSERT INTO test(id) VALUES (?)"))) {
+				//		echo "Prepare failed: (" . $mysqli->errno . ") " . $mysqli->error;
+				//	}			
+				/*if($stmt = $link->prepare(SELECT User_Id FROM User WHERE Fname=?")){
+
+				$stmt->bind_parm("s", $user);
+				$stmt->execute();
+				$stmt->bind_result($user_id);
+				$stmt->fetch();
+				printf("%s is in %s\n", $user, $user_id);
+				stmt->close();
+				}*/		
+		
 				$result = $link->query($sql);
 				if($result->num_rows > 0){
 					echo "<table class='table table-hover' style='color:white;'>";
@@ -127,9 +122,7 @@
 						echo "<input type='submit' class='btn btn-primary' name='display' value='View Profile'>";
 						echo "<input type='hidden' name='id' value='".$row['User_Id']."'>";
 						echo "<input type='hidden' name='type' value='".$row['type']."'>";
-						echo "</td></form></tr>";
-						
-						//echo "ID: ".$row['User_Id']." - Account: ".$row['type']."<br>";
+						echo "</td></form></tr>";		
 					}
 					echo "</tbody></table>";
 				} else {
@@ -138,12 +131,6 @@
 				
 				$_SESSION['searchString']= $search;
 
-			/*
-			echo "<form action= 'displaySearch.php'>";
-			echo "<input type = 'hidden' name='varname' value = $search />";
-			echo "<input type = 'submit' value = $search />";
-			echo "<a href = 'displaySearch.php' onclick='$_POST[$search]'> $search </a>";
-			echo "</form>";*/
 			}
 			
 

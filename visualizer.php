@@ -8,7 +8,7 @@
         //If the user is not logged in, redirect to the login page
         session_start();
         if(strcmp($_SESSION['type'],'user') !== 0 && strcmp($_SESSION['type'],'business') !== 0){
-                header('Location: https://mizseng.centralus.cloudapp.azure.com/index.php');
+                header('Location: index.php');
         }
 
         //Connect to the database through the automated script
