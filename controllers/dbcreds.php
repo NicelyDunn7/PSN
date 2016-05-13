@@ -15,10 +15,10 @@
 	}
 
 	//Connect to the MySQL Account on Azure Server
-	$hostname = "localhost";
-	$username = "group9";
-	$password = "Ram-Rod9";
-	$dbname = "webdata";
+	$hostname = "";
+	$username = "";
+	$password = "";
+	$dbname = "";
 	$link = new mysqli($hostname, $username, $password, $dbname);
 	if ($link->connect_error) {
 		die("Connection failed: " . $link->connect_error);
